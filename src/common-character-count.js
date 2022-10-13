@@ -15,11 +15,36 @@ function getCommonCharacterCount(s1, s2) {
 
   let arrayS1, arrayS2;
   let result = 0;
+  let resultObjS1 = {}
+  let resultObjS2 = {}
 
   if (s1 === '' || s2 === '') return 0;
-  arrayS1 = s1.split(' ');
-  arrayS2 = s2.split(' ');
-  arrayS1.forEach(item => {})
+  arrayS1 = s1.split('');
+  arrayS2 = s2.split('');
+
+  arrayS1.forEach(item => {
+    if (resultObjS1[item]) {
+      resultObjS1[item] += 1;
+    } else {
+      resultObjS1[item] = 1
+    }
+  })
+
+  arrayS2.forEach(item => {
+    if (resultObjS2[item]) {
+      resultObjS2[item] += 1;
+    } else {
+      resultObjS2[item] = 1
+    }
+  })
+
+  for (let key1 in resultObjS1) {
+    for (let key2 in resultObjS2) {
+      if (key1 === key2) {
+        result = result + Math.min(resultObjS1[key1], resultObjS2[key2])
+      }
+    }
+  }
 
   return result
   throw new NotImplementedError('Not implemented');
